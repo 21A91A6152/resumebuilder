@@ -5,10 +5,12 @@
   "main": "app.js",
   "type": "commonjs",
   "scripts": {
-  "start": "npx nodemon --experimental-modules --es-module-specifier-resolution=node app.js",  // Ensure using npx for nodemon
+  "start": "nodemon --experimental-modules --es-module-specifier-resolution=node app.js",  
+  "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node app.js",
   "test": "echo \"Error: no test specified\" && exit 1",
-  "build": "npm install"
+  "build": "npm install && npm install -g nodemon"   
 }
+
 ,
   "keywords": [],
   "author": "",

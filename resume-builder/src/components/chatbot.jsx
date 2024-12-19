@@ -13,7 +13,7 @@ const ChatApp = () => {
 
     const resetSession = async () => {
       try {
-        await axios.post("http://localhost:5000/reset-session");
+        await axios.post("https://resumebuilder-su2e.onrender.com/reset-session");
       } catch (error) {
         console.error("Failed to reset session:", error);
       }
@@ -29,12 +29,12 @@ const ChatApp = () => {
   
  
     try {
-        const response = await axios.post("http://localhost:5000/chat", { message: input });
+        const response = await axios.post("https://resumebuilder-su2e.onrender.com/chat", { message: input });
         const botMessage = response.data.reply;
         const userName = response.data.name;   
         setUserNameBot(userName);  
         if (botMessage.includes("<a href=")) {
-          const downloadLink = `http://localhost:5000/resumes/${userName}_resume.pdf`;  
+          const downloadLink = `https://resumebuilder-su2e.onrender.com/resumes/${userName}_resume.pdf`;  
           setMessages([
             ...newMessages,
             { 

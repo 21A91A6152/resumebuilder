@@ -2,12 +2,12 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "type": "commonjs",
   "scripts": {
-    "start": "nodemon --experimental-modules --es-module-specifier-resolution=node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm i"
+  "start": "nodemon --experimental-modules --es-module-specifier-resolution=node app.js",
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "build": "npm install"
   },
   "keywords": [],
   "author": "",

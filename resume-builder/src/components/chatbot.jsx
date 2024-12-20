@@ -80,46 +80,44 @@ const ChatApp = () => {
 
     
       {showChat && (
-        <div className="fixed bottom-4 right-1 sm:bottom-6 sm:right-1 w-full sm:w-10 bg-gradient-to-b from-gray-800 via-gray-900 to-black border border-gray-700 rounded-lg shadow-lg">
-          <div className="p-4 bg-gray-800 rounded-t-lg flex justify-between items-center">
-            <h2 className="text-lg font-bold">Chat Bot</h2>
-            <button className="text-white hover:text-red-500" onClick={closeChat} aria-label="Close Chat">
-              ✕
-            </button>
-          </div>
-
-     
-          <div className="chat-window bg-gray-800 p-4 h-72 sm:h-96 overflow-y-auto">
-            {messages.map((msg, index) => (
+        <div className="chat-container flex flex-col h-screen bg-gray-800 mx-5 ">
+        <div className="chat-window flex-1 p-4 sm:p-6 h-[calc(80vh-100px)] sm:h-[calc(80vh-150px)] overflow-y-auto">
+          {messages.map((msg, index) => (
+            <div
+              key={index}
+              className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"} mb-2`}
+            >
               <div
-                key={index}
-                className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"} mb-2`}
+                className={`p-3 rounded-lg max-w-xs sm:max-w-sm lg:max-w-md text-sm sm:text-base ${
+                  msg.sender === "user"
+                    ? "bg-blue-600 text-white rounded-tr-none"
+                    : "bg-gray-700 text-white rounded-tl-none"
+                }`}
               >
-                <div
-                  className={`p-3 rounded-lg max-w-xs text-sm ${msg.sender === "user" ? "bg-blue-600 text-white rounded-tr-none" : "bg-gray-700 text-white rounded-tl-none"}`}
-                >
-                  {msg.isHTML ? (
-                    <div dangerouslySetInnerHTML={{ __html: msg.text }} />
-                  ) : (
-                    msg.text
-                  )}
-                </div>
+                {msg.isHTML ? (
+                  <div dangerouslySetInnerHTML={{ __html: msg.text }} />
+                ) : (
+                  msg.text
+                )}
               </div>
-            ))}
-
-            {isLoading && <div className="text-center text-sm text-gray-400">Bot is typing...</div>}
-          </div>
-
-        
+            </div>
+          ))}
+      
+          {isLoading && <div className="text-center text-sm text-gray-400">Bot is typing...</div>}
+        </div>
+      
+        <div className="input-container bg-gray-800">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
             placeholder="Type your message..."
-            className="border border-gray-600 bg-gray-700 text-white p-2 w-full rounded-b-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-gray-600 bg-gray-700 text-white p-2 sm:p-3 w-full text-sm sm:text-base rounded-b-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
+      </div>
+      
       )}
     </div>
   );
